@@ -9,7 +9,7 @@ import FrontPage from './Component/FrontPage';
 import Signup from './Component/Form/Signup';
 function App() {
   const router =createBrowserRouter([
-    {path:"",element:<FrontPage />},
+    {path:"",element:<Main />},
     {path:'form',element:<Signup />}
     
   ])

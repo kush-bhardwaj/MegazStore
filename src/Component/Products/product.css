@@ -1,38 +1,41 @@
-.productCard{
-    display: flex;
+.mainProductDiv{
     width: 100%;
-    justify-content: center;
-   padding: 20px;
-   background-color: aliceblue;
+    display: inline-block;
+    /* background-color: whitesmoke; */
 }
-.productCard>.insideCard{
-
-    width: 20%;
-    margin: 10px;
+.mainProductDiv>.options{
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    border: .2 solid white!important;
 }
-.productCard>.insideCard>.image{
-    width: 250px;
-    margin:20px;
+.mainProductDiv>.options>.inner{
+    width: 90%;
+    padding: 5px;
 }
-.cardTitle{
-    font-size: 15px;
+.mainProductDiv>.options>.inner >select{
+    width: 120px;
+    padding: 5px;
+    font-weight: thin;
+    letter-spacing: 0.5px;
+    border-radius: 7px;
+    border: .5px solid lightgray;
+    color: rgb(68, 65, 65);
+    /* background-color: red; */
 }
-
-.ProductCard{
-    width: 100%;;
-   background-color: aliceblue;
+.ProductCard {
+    width: 100%;
+    /* background-color:rgb(247, 246, 246); */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 5px;
     margin-bottom: 10px;
 }
-.ProductCard>button{
+
+.ProductCard>button {
     width: 40px;
     border-radius: 10px;
     text-align: center;
@@ -40,46 +43,99 @@
     border: .5px solid #fff;
     color: #807c7c;
     outline: none;
-    
+
     background-color: #fff;
 }
-.ProductCard>.ProducardCardMiddle{
+
+.ProductCard>.ProducardCardMiddle {
     width: 90%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 5px;
     align-items: center;
     text-align: center;
     margin-top: 20px;
-   
-    
+
+
 }
 
- .ProductCard>.ProducardCardMiddle>.ProductCardInside{
-    width: 25%;
+.ProductCard>.ProducardCardMiddle>.ProductCardInside {
+    width: 20%;
     margin: 10px;
     border: none;
     background-color: #fff;
     border-radius: 10px;
     transition: .5s ease all;
     cursor: pointer;
-    
-} 
-.ProductCard>.ProducardCardMiddle>.ProductCardInside>.textContent{
+    border: 1px solid red;
+
+}
+
+.ProductCard>.ProducardCardMiddle>.ProductCardInside>.textContent {
     width: 100%;
     /* padding: px; */
     /* background-color: rebeccapurple; */
 }
-.ProductCard>.ProducardCardMiddle>.ProductCardInside:hover img{
-   transform:scale(1.1);
-   transition: .5s ease all;
+
+.ProductCard>.ProducardCardMiddle>.ProductCardInside:hover img {
+    transform: scale(1.1);
+    transition: .5s ease all;
 }
-.ProductCardInside>.ProductsImg{
+
+.ProductCardInside>.ProductsImg {
     width: 100%;
     padding: 10px;
     margin: 5px;
     transition: .5s ease all;
 }
-.ProductCard>.ProducardCardMiddle>.ProductCardInside>.ProductsImg>img{
+
+.ProductCard>.ProducardCardMiddle>.ProductCardInside>.ProductsImg>img {
     width: 50%;
+}
+.ProductCard>.ProducardCardMiddle>.ProductCardInside>.cartButton{
+    background-color: tomato;
+    border-radius: 5px;
+    color: #000;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 5px;
+    width: 150px;
+    font-size: 15px;
+    border: none;
+    margin-bottom: 10px;
+    justify-content: center;
+    vertical-align: middle;
+    transition: .2s ease all;
+    position: relative;
+}
+.ProductCard>.ProducardCardMiddle>.ProductCardInside>.cartButton>.cartIcon{
+    font-size: 15px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.ProductCard>.ProducardCardMiddle>.ProductCardInside>.cartButton:hover{
+    border: .5px solid tomato;
+    background-color: #fff;
+}
+.ProductCard>.ProducardCardMiddle>.ProductCardInside>.cartButton::after{
+    content: "-->";
+    position:absolute;
+    opacity: 0;
+    color: tomato; 
+    /* transition: 1s ease-in-out; */
+
+}
+.ProductCard>.ProducardCardMiddle>.ProductCardInside>.cartButton:hover::after {
+     
+    color: tomato; 
+    opacity: 1;
+    right: -25px;
+    transition: 1s ease all;
+
+
+}
+.ProductCard>.ProducardCardMiddle>.ProductCardInside>.cartButton>span{
+    vertical-align: middle;
 }

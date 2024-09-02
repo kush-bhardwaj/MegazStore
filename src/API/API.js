@@ -49,3 +49,41 @@ export const GetProducts = async(page)=>{
 
 
 //products end
+
+
+
+//getCategory api
+
+export const getCategory = async ()=>{
+    const header ={
+        method:"GET",
+        headers:{"Content-type":"application/json"}
+    }
+    const res = await fetch(`${API_BASE_URL}${API_ROUTER.category.getCategory}`,header);
+    return await res.json();
+}
+
+
+//get single category
+export const getSingleCategory = async (id)=>{
+    console.log("id",id)
+    const header ={
+        method:"GET",
+        header:{
+            "Content-type":"application/json"
+        }
+    }
+    const res = await fetch(`${API_BASE_URL}${API_ROUTER.category.getSingleCategory}/${id}`,header);
+    return await res.json()
+}
+
+
+//categoryProduct
+export const GetProductByCat = async(id)=>{
+    const header ={
+        method:"GET",
+        headers:{"Content-type":"applicatoin/json"}
+    }
+    const res = await fetch(`${API_BASE_URL}${API_ROUTER.products.aggregate}/${id}`,header);
+    return await res.json()
+}

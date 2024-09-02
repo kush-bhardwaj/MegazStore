@@ -6,10 +6,17 @@ export const API_ROUTER = {
     products:{
         getAllProduct:"/product/allProduct",
         singleProduct:"",
+        aggregate:"/product/getproductbyid"
     },
     slider:{
         getSlider:"/slider/getSlider"
     },
-    cart:{},
+    cart:{
+
+    },
+    category:{
+        getCategory:"/category/getAllCategory",
+        getSingleCategory:'/category/singlecategory'
+    }
     
 }
