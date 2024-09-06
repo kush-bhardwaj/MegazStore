@@ -5,7 +5,7 @@ export const API_ROUTER = {
     },
     products:{
         getAllProduct:"/product/allProduct",
-        singleProduct:"",
+        singleProduct:"/product/singleProduct",
         aggregate:"/product/getproductbyid"
     },
     slider:{

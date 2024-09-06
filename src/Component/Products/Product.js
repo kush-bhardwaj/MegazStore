@@ -8,12 +8,15 @@ import Card from 'react-bootstrap/Card';
 import { GetProductByCat, GetProducts ,getCategory, getSingleCategory } from '../../API/API';
 import { API_IMAGE_URL } from '../../URL/URL';
 import Carousel from 'react-bootstrap/Carousel';
+import { useNavigate } from 'react-router-dom';
 export default function Product() {
+  const navigate = useNavigate()
   const [productData, setProductData] = useState()
   const [category ,setCategory] = useState()
   const [pages, setPages] = useState(1)
+  const id ="669a6d20537e70bd47330bf3"
   async function calling() {
-    const res = await GetProducts(pages);
+    const res = await GetProductByCat(id);
     setProductData(res.data)
   }
   const SingleCategory = async (event)=>{
@@ -28,6 +31,10 @@ export default function Product() {
    setCategory(res.data)
   }
 
+  function Descriptioin(name){
+    // console.log("name",name.replaceAll(" ","-"))
+      navigate(`/description/${name}`)
+  }
  
   useEffect(() => {
     calling()
@@ -53,13 +60,12 @@ export default function Product() {
           {/* <button title='previous' onClick={() => { setPages(pages - 1) }}><FaAngleDoubleLeft /></button> */}
           <div className='ProducardCardMiddle'>
             {productData?.map((e, i) =>
-              <div key={i} className='ProductCardInside'>
+              <div key={i} className='ProductCardInside' onClick={()=>Descriptioin(e.productTitle)}>
                 <div className='ProductsImg'><img src={`${API_IMAGE_URL}${e.productImg}`}></img></div>
                 <div className='textContent'>
                   <p style={{ maxHeight: "50px", overflow: "hidden", fontSize: "15px" }}>{e.productTitle}</p>
                   <p>From :- {e.productPrice}</p>
                 </div>
-                <button className='cartButton'> <TbShoppingCart className='cartIcon' /><span>Add To Cart</span></button>
               </div>)}
           </div>
           {/* <button title='more' onClick={() => { setPages(pages + 1) }}><FaAngleDoubleRight /></button> */}
