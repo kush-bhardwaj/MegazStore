@@ -12,6 +12,8 @@ export const API_ROUTER = {
         getSlider:"/slider/getSlider"
     },
     cart:{
+        addcart:"/cart/addcart",
+        getcart:"/cart/getcarts"
 
     },
     category:{

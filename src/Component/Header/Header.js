@@ -19,7 +19,7 @@ export default function Header() {
                     </div>
                     <div className="rightDiv">
                       <span title='Login' onClick={()=>navigate('/form')}>  <HiOutlineUserCircle className='icons'/> Login</span>
-                      <span title='Cart'>  <PiShoppingCartThin className='icons'/> Cart</span>
+                      <span title='Cart' onClick={()=>navigate('/cart')}>  <PiShoppingCartThin className='icons'/> Cart</span>
                       <span title='Seller'> <BsShopWindow className='icons'/> Become a Seller</span>
                      <span>  <BsThreeDotsVertical/></span>
                     </div>

@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    /* font-weight: 100; */
+    font-style: normal;
+}
+section{
+    background-color: #f1f3f6;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+section>.middle{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+
+
+}
+section>.middle>.left{
+    width: 68%;
+    display: flex;
+    background-color: #fff;
+    padding: 10px;
+}section>.middle>.left>div{
+    margin: 5px;
+}
+section>.middle>.left>.cartImg{
+    width: 20%;
+    background-color: aliceblue;
+}
+section>.middle>.right{
+    width: 30%;
+    /* position:fixed; */
+    display: flex;
+    background-color: #fff;
+    display: flex;
+    flex-direction:column;
+   
+}
+section>.middle>.right>.amount{
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #e0dbdb;
+}
+section>.middle>.right>.amount>small{
+    color: rgb(142, 142, 142);
+    font-size: 17px;
+    font-weight: bold;
+
+}
+section>.middle>.right>.amountDetails{
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+
+}

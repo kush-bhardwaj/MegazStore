@@ -1,5 +1,6 @@
 import { API_BASE_URL } from "../URL/URL";
 import { API_ROUTER } from "../Utils/ApiRouter";
+import { GetStorage } from "../Utils/Storage";
 
 //customer form api start here
 
@@ -21,7 +22,10 @@ export const LoginApi = async(data)=>{
         console.log("data",data)
     const header ={
         method:"POST",
-        headers:{"Content-type":"application/json"},
+        headers:{
+            "Content-type":"application/json",
+            "Authorization":`Bearer ${GetStorage().token}`
+        },
         body:JSON.stringify(data)
     }
     const res = await fetch(`${API_BASE_URL}${API_ROUTER.auth.login}`,header);
@@ -116,3 +120,52 @@ export const GetSingleProduct = async (data)=>{
     return await res.json();
    }catch(err){}
 }
+
+
+
+
+//cart api's
+
+//add to cart 
+
+export const AddToCart = async(productId)=>{
+    const details ={
+        "productId":`${productId}`
+    }
+    
+    var formBody =[]
+    for(let check in details){
+        const urlKey = encodeURIComponent(check)
+        const urlValue =encodeURIComponent(details[check])
+        formBody.push(urlKey + "=" + urlValue)
+    }
+    formBody = formBody.join('&');
+    const header ={
+        method:"POST",
+        headers:{
+            "Content-type":"application/x-www-form-urlencoded",
+            'Authorization':`Bearer ${GetStorage().token}`
+        },
+        body:formBody
+    }
+    console.log(header.headers)
+    const res = await fetch(`${API_BASE_URL}${API_ROUTER.cart.addcart}`,header)
+    return await res.json();
+}
+
+//add to cart end
+
+export const GetCarts = async(id)=>{
+    const header ={
+        method:"GET",
+        header:{
+            "Content-type":"application/json",
+            "Authorization":`Bearer ${GetStorage().token}`
+        }
+    }
+    const res = await fetch(`${API_BASE_URL}${API_ROUTER.cart.getcart}/${id}`,header);
+    return await res.json()
+
+}
+
+//cart api's end

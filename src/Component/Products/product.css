@@ -92,6 +92,8 @@
     padding: 10px;
     margin: 5px;
     transition: .5s ease all;
+    aspect-ratio: 4/3;
+    object-fit: contain;
 }
 
 .ProductCard>.ProducardCardMiddle>.ProductCardInside>.ProductsImg>img {

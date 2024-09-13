@@ -16,19 +16,25 @@ export default function Product() {
   const [pages, setPages] = useState(1)
   const id ="669a6d20537e70bd47330bf3"
   async function calling() {
+   try{
     const res = await GetProductByCat(id);
     setProductData(res.data)
+   }catch(err){}
   }
   const SingleCategory = async (event)=>{
     // console.log("id",event.target.value)
     // const res = await getSingleCategory(event.target.value)
+   try{
     const res = await GetProductByCat(event.target.value);
     setProductData(res.data)
     console.log("res",res)
+   }catch(err){}
   }
   const CategoryCall = async()=>{
+   try{
     const res = await getCategory()
-   setCategory(res.data)
+    setCategory(res.data)
+   }catch(err){}
   }
 
   function Descriptioin(name){
