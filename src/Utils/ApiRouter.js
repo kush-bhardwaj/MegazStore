@@ -13,7 +13,9 @@ export const API_ROUTER = {
     },
     cart:{
         addcart:"/cart/addcart",
-        getcart:"/cart/getcarts"
+        getcart:"/cart/getcart",
+        updatecart:'/cart/updatecart',
+        deletecart:"/cart/deletecart"
 
     },
     category:{

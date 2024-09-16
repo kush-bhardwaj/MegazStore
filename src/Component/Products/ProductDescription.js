@@ -8,11 +8,13 @@ import Header from '../Header/Header';
 import ScreenLoader from '../../Utils/Loader';
 import { memo } from 'react';
 import { GetStorage } from '../../Utils/Storage';
+import Cart from '../cart/Cart';
 
 const ProductDescription = () => {
     const { name } = useParams()
     const [load, setLoad] = useState(true)
     const [product, setProduct] = useState([])
+    const navigate = useNavigate()
     async function ProductDescription() {
         try {
             const res = await GetSingleProduct(name)
@@ -28,6 +30,7 @@ const ProductDescription = () => {
             const res = await AddToCart(productId)
             if(res.status === 'success'){
                 toast.success(res.message)
+                // navigate(`/cart/${productId}`)
             }
             console.log(res)
         }

@@ -16,32 +16,85 @@ section>.middle{
     width: 90%;
     display: flex;
     justify-content: space-between;
-
+  
 
 }
 section>.middle>.left{
     width: 68%;
     display: flex;
-    background-color: #fff;
-    padding: 10px;
-}section>.middle>.left>div{
+    flex-direction: column;
+    
+
+}section>.middle>.left>.leftSide{
+    width: 100%;
     margin: 5px;
+    padding: 15px;
+    background-color: #fff;
+    display: flex;
+    justify-content:safe;
+    border-radius: 5px;
 }
-section>.middle>.left>.cartImg{
+section>.middle>.left>.leftSide>.cartImg{
     width: 20%;
-    background-color: aliceblue;
+    height: 120px;
+    text-align: center;
+}
+section>.middle>.left>.leftSide>.cartImg>img{
+    
+    height: 100%;
+}
+section>.middle>.left>.leftSide>.cartDetails{
+   width: 70%;
+   /* font-size: 20px; */
+}
+section>.middle>.left>.leftSide>.cartDetails>button{
+    width: 30px;
+    border: .5px solid lightgray;
+    margin-top: 10px;
+    margin-right: 5px;
+    outline: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+section>.middle>.left>.leftSide>.cartDetails>.plus{
+ margin-left: 5px;
+}
+section>.middle>.left>.leftSide>.cartDetails>.inc{
+    padding: 3px;
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    background-color: rgb(237, 235, 235);
+    border: .5px solid lightgray;
+    font-weight: bold;
+
+    /* color: red; */
+}
+section>.middle>.left>.leftSide>.cartDetails>.remove{
+    padding: 3px;
+    width: 70px;
+    text-align: center;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase;
+    cursor: pointer;
 }
 section>.middle>.right{
     width: 30%;
+    margin: 5px;
+   
+    border-radius: 5px;
     /* position:fixed; */
     display: flex;
     background-color: #fff;
-    display: flex;
     flex-direction:column;
+    max-height: 500px;
    
 }
 section>.middle>.right>.amount{
     width: 100%;
+    margin-top: 5px;
     padding: 10px;
     background-color: #fff;
     border-bottom: 1px solid #e0dbdb;

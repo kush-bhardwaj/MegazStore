@@ -155,17 +155,44 @@ export const AddToCart = async(productId)=>{
 
 //add to cart end
 
-export const GetCarts = async(id)=>{
+//get carts
+export const GetCarts = async()=>{
     const header ={
         method:"GET",
-        header:{
-            "Content-type":"application/json",
-            "Authorization":`Bearer ${GetStorage().token}`
+        headers:{
+            "Authorization":`bearer ${GetStorage().token}`
         }
     }
-    const res = await fetch(`${API_BASE_URL}${API_ROUTER.cart.getcart}/${id}`,header);
+    // console.log("header",header)
+    const res = await fetch(`${API_BASE_URL}${API_ROUTER.cart.getcart}`,header);
     return await res.json()
 
 }
 
+
+//delete carts
+
+export const DelelteCart = async(id)=>{
+    const header ={
+        method:"DELETE",
+        headers:{
+            "Authorization":`Bearer ${GetStorage().token}`
+        }
+    }
+    const resData = await fetch(`${API_BASE_URL}${API_ROUTER.cart.deletecart}/${id}`,header);
+    return await resData.text()
+}
+
+//update quantity of cart
+
+export const UpdateCart = async(id)=>{
+    const header ={
+        method:"PUT",
+        headers:{
+            "Authorization":``
+        }
+    }
+}
+
+//end update qunatity of cart
 //cart api's end
