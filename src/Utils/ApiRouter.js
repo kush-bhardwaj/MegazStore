@@ -15,6 +15,7 @@ export const API_ROUTER = {
         addcart:"/cart/addcart",
         getcart:"/cart/getcart",
         updatecart:'/cart/updatecart',
+        decrementcart:'/cart/decrement',
         deletecart:"/cart/deletecart"
 
     },

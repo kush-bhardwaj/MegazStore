@@ -129,43 +129,51 @@ export const GetSingleProduct = async (data)=>{
 //add to cart 
 
 export const AddToCart = async(productId)=>{
-    const details ={
-        "productId":`${productId}`
+    try{
+        const details ={
+            "productId":`${productId}`
+        }
+        
+        var formBody =[]
+        for(let check in details){
+            const urlKey = encodeURIComponent(check)
+            const urlValue =encodeURIComponent(details[check])
+            formBody.push(urlKey + "=" + urlValue)
+        }
+        formBody = formBody.join('&');
+        const header ={
+            method:"POST",
+            headers:{
+                "Content-type":"application/x-www-form-urlencoded",
+                'Authorization':`Bearer ${GetStorage().token}`
+            },
+            body:formBody
+        }
+        console.log(header.headers)
+        const res = await fetch(`${API_BASE_URL}${API_ROUTER.cart.addcart}`,header)
+        return await res.json();
+    }catch(err){
+        console.error(err)
     }
-    
-    var formBody =[]
-    for(let check in details){
-        const urlKey = encodeURIComponent(check)
-        const urlValue =encodeURIComponent(details[check])
-        formBody.push(urlKey + "=" + urlValue)
-    }
-    formBody = formBody.join('&');
-    const header ={
-        method:"POST",
-        headers:{
-            "Content-type":"application/x-www-form-urlencoded",
-            'Authorization':`Bearer ${GetStorage().token}`
-        },
-        body:formBody
-    }
-    console.log(header.headers)
-    const res = await fetch(`${API_BASE_URL}${API_ROUTER.cart.addcart}`,header)
-    return await res.json();
 }
 
 //add to cart end
 
 //get carts
 export const GetCarts = async()=>{
-    const header ={
-        method:"GET",
-        headers:{
-            "Authorization":`bearer ${GetStorage().token}`
+    try{
+        const header ={
+            method:"GET",
+            headers:{
+                "Authorization":`bearer ${GetStorage().token}`
+            }
         }
+        // console.log("header",header)
+        const res = await fetch(`${API_BASE_URL}${API_ROUTER.cart.getcart}`,header);
+        return await res.json()
+    }catch(err){
+        console.error(err)
     }
-    // console.log("header",header)
-    const res = await fetch(`${API_BASE_URL}${API_ROUTER.cart.getcart}`,header);
-    return await res.json()
 
 }
 
@@ -173,6 +181,7 @@ export const GetCarts = async()=>{
 //delete carts
 
 export const DelelteCart = async(id)=>{
+   try{
     const header ={
         method:"DELETE",
         headers:{
@@ -180,18 +189,44 @@ export const DelelteCart = async(id)=>{
         }
     }
     const resData = await fetch(`${API_BASE_URL}${API_ROUTER.cart.deletecart}/${id}`,header);
-    return await resData.text()
+    return await resData.json()
+   }catch(err){
+    console.error(err)
+   }
 }
 
 //update quantity of cart
 
-export const UpdateCart = async(id)=>{
-    const header ={
+export const IncreamentQuantityCart = async(id)=>{
+    try{
+        const header ={
+            method:"PUT",
+            headers:{
+                "Authorization":`Beare ${GetStorage().token}`
+            }
+        }
+        const res = await fetch(`${API_BASE_URL}${API_ROUTER.cart.updatecart}/${id}`,header)
+        return await res.json()
+    }catch(err){
+        console.error(err)
+    }
+}
+
+
+export const DecrementQuantityCart = async(id)=>{
+   try{
+     // console.log()
+     const header ={
         method:"PUT",
         headers:{
-            "Authorization":``
+            "Authorization":`Beare ${GetStorage().token}`
         }
     }
+    const res = await fetch(`${API_BASE_URL}${API_ROUTER.cart.decrementcart}/${id}`,header)
+    return await res.json()
+   }catch(err){
+    console.error(err)
+   }
 }
 
 //end update qunatity of cart

@@ -30,8 +30,11 @@ const ProductDescription = () => {
             const res = await AddToCart(productId)
             if(res.status === 'success'){
                 toast.success(res.message)
-                // navigate(`/cart/${productId}`)
+                setTimeout(()=>{
+                    navigate(`/cart`)
+                },500)
             }
+           else{toast.error(res.message)}
             console.log(res)
         }
     useState(() => {

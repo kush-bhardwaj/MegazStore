@@ -40,7 +40,8 @@ section>.middle>.left>.leftSide>.cartImg{
     text-align: center;
 }
 section>.middle>.left>.leftSide>.cartImg>img{
-    
+    width: 100%;
+    object-fit: contain;
     height: 100%;
 }
 section>.middle>.left>.leftSide>.cartDetails{
