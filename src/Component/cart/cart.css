@@ -90,7 +90,7 @@ section>.middle>.right{
     display: flex;
     background-color: #fff;
     flex-direction:column;
-    max-height: 500px;
+    max-height: 300px;
    
 }
 section>.middle>.right>.amount{
@@ -110,5 +110,37 @@ section>.middle>.right>.amountDetails{
     width: 100%;
     padding: 10px;
     background-color: #fff;
+}
 
+
+section>.middle>.right>.amountDetails>div{
+    width: 85%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-between;
+}
+section>.middle>.right>.amountDetails>div>p:nth-child(2){
+    /* color: orange; */
+    /* text-decoration: ; */
+}
+
+section>.middle>.right>.amountDetails>.checkout{
+    width: 100%;
+    /* background-color: red; */
+    margin-top: 20px;
+}
+section>.middle>.right>.amountDetails>.checkout>button{
+    width: 100%;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    border-width: 3px;
+    border:  dotted #fff;
+    background-color: rgb(255, 123, 0);
+    color: #fff;
+    transition: .5s ease all;
+    
 }

@@ -14,59 +14,72 @@ const Cart = () => {
     const[TOTAL , setTotal] =useState()
     async function GetCartFun() {
         // console.log("hello")
-        const res = await GetCarts()
+        try{
+            const res = await GetCarts()
         console.log("res",res)
         if (res.status === "success") {
+            setCart(res)
+            const discount =  Carts?.data?.reduce((acc,e)=>
+                
+                acc+e.discount
+            
+            ,0)
+            setTotal(discount)
             if(res.data.length ===0){
+                
                 setBlank(true)
             }
             // console.log("data",res.data)
             setLoad(false)
-            // const extractedObjects = res?.data.flatMap(item => item.cartsData);
-            // console.log(extractedObjects);
-            // setCart(extractedObjects)
-            setCart(res)
-            setPrice(res)
+            // console.log('cart',Carts)
 
-            // var price =  res?.data?.reduce((acc, e) => {
-            //     const prices = parseInt(e.cartsData?.productPrice )|| 0;
-            //     return acc + prices;
-            //   }, 0)
-              //console.log(price)
-        
-            //setTotal(price)
+        }
+        }catch(err){
+            console.error(err)
         }
     }
 
     //incerement quantiy with price
     async function IncQuantity(id) {
-           const res = await IncreamentQuantityCart(id)
-        //    console.log("res", res)
-           if(res.status==='success'){
-            GetCartFun()
-            toast.success(res.message)
-           }
+          try{
+            const res = await IncreamentQuantityCart(id)
+            //    console.log("res", res)
+               if(res.status==='success'){
+                GetCartFun()
+                toast.success(res.message)
+               }
+          }catch(err){
+            console.error(err)
+          }
     }
     //decerement quantiy with price
     async function DecQuantity(id) {
 
-        const res = await DecrementQuantityCart(id)
-        console.log("res",res)
+        try{
+            const res = await DecrementQuantityCart(id)
+        // console.log("res",res)
         if(res.status === 'success'){
             toast.success(res.message)
             GetCartFun()
         }
+        }catch(err){console.error(err)}
     }
 
     //delete cart product
     async function DeleteCartAPICall(id) {
-        const res = await DelelteCart(id)
-        console.log(res)
+        try{
+            const res = await DelelteCart(id)
+        // console.log(res)
         if(res.status === 'success'){
             toast.success(res.message)
             GetCartFun()
         }
+        }catch(err){console.error(err)}
     }
+    
+   
+       
+    
     
     useEffect(() => {
         GetCartFun()
@@ -97,20 +110,38 @@ const Cart = () => {
                         <div className='amount'><small>PRICE DETAILS</small></div>
                         <div className='amountDetails'>
                             {/* {PRICE?.data?.map((e,i)=>console.log("roice",e?.cartsData.productPrice))} */}
-                            <p>Price ({PRICE?.data?.length} Items)<small>
-                                {
+                           <div>
+                           <p>Price ({Carts?.data?.length} Items)</p>
+                           <p> &#8377;&nbsp;{
                                     Carts?.data?.reduce((acc, e) => {
                                         const prices = parseInt(e.cartsData?.productPrice )*e.quantity|| 0;
-                                        return acc + prices;
+                                        return acc + prices
+                                      
                                       }, 0)
                                 }
                                 
-                                </small>
+                                </p>
+                           </div>
+                          
+                            <div>
+                                <p>Delivery Charges</p>
+                                <p> <span style={{textDecoration:"line-Through",color:"#a83248"}}>&#8377;40</span>&nbsp;&nbsp;<span style={{color:"#32a852"}}>Free</span></p>
+                            </div>
+                                <div>
+                                <h5>Total Amount</h5>
+                                <p> &#8377;&nbsp;{
+                                    Carts?.data?.reduce((acc, e) => {
+                                        const prices = parseInt(e.cartsData?.productPrice )*e.quantity|| 0;
+                                        return acc + prices
+                                      
+                                      }, 0)
+                                }
                                 
                                 </p>
-                            <p>Discount</p>
-                            <p>Delivery Charges</p>
-                            <h5>Total Amount</h5>
+                                </div>
+                            <div className='checkout'>
+                                <button>Checkout</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -126,12 +157,12 @@ export default memo(Cart);
 // const x = {
 //     status: 'success',
 //     data: [
-//         {_id: "hello my world", userId: "abc",
+//         {_id: "hello my world", userId: "abc",discount:1500,
 //             cartsData: [
 //                 { _id: 'hcl', productName: 'samsung', productTitile: "xxy", productImg: "xyc" }
 //             ]
 //         },
-//         {_id: "hello world", userId: "abc",
+//         {_id: "hello world", userId: "abc",discount:1500,
 //             cartsData: [
 //                 { _id: 'hclx', productName: 'iPhone', productTitile: "xxy", productImg: "xyc" }
 //             ]
@@ -141,3 +172,13 @@ export default memo(Cart);
 // const extractedObjects = x.data.flatMap(item => item.cartsData);
 
 // console.log(extractedObjects);
+
+
+
+
+
+
+
+
+
+

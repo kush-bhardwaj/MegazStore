@@ -9,16 +9,21 @@ import { GetProductByCat, GetProducts ,getCategory, getSingleCategory } from '..
 import { API_IMAGE_URL } from '../../URL/URL';
 import Carousel from 'react-bootstrap/Carousel';
 import { useNavigate } from 'react-router-dom';
+import ScreenLoader from '../../Utils/Loader';
 export default function Product() {
   const navigate = useNavigate()
   const [productData, setProductData] = useState()
   const [category ,setCategory] = useState()
   const [pages, setPages] = useState(1)
+  const [load,setLoad] = useState(true)
   const id ="669a6d20537e70bd47330bf3"
   async function calling() {
    try{
     const res = await GetProductByCat(id);
-    setProductData(res.data)
+    if(res.status === 'success'){
+      setLoad(false)
+      setProductData(res.data)
+    }
    }catch(err){}
   }
   const SingleCategory = async (event)=>{
@@ -51,7 +56,7 @@ export default function Product() {
 
 
 
-      <div className='mainProductDiv'>
+     {load?<ScreenLoader />: <div className='mainProductDiv'>
       <div className='options'>
        <div className='inner'>
        <select onChange={SingleCategory}>
@@ -77,7 +82,7 @@ export default function Product() {
           {/* <button title='more' onClick={() => { setPages(pages + 1) }}><FaAngleDoubleRight /></button> */}
         </div>
 
-      </div>
+      </div>}
     </>
   )
 }
