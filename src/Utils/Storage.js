@@ -9,3 +9,10 @@ export function GetStorage(){
         return false
     }
 }
+
+export function GetStorageInfo(){
+    if(localStorage.getItem(STORAGE_KEY)){
+        return true
+    }
+    else return false;
+}

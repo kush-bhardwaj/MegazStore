@@ -6,6 +6,10 @@
     /* font-weight: 100; */
     font-style: normal;
 }
+::selection {
+    background-color: orange;
+    color: #fff;
+}
 section{
     background-color: #f1f3f6;
     padding: 10px;
@@ -23,9 +27,51 @@ section>.middle>.left{
     width: 68%;
     display: flex;
     flex-direction: column;
-    
+    justify-content: space-between;
+}
+section>.middle>.left>.address{
+    width: 100%;
+    margin: 5px;
+    padding: 15px;
+    background-color: #fff;
+    display: flex;
+    justify-content:space-between;
+    border-radius: 5px;
 
-}section>.middle>.left>.leftSide{
+}
+section>.middle>.left>.address>.addreInput{
+    width: 70%;
+    padding: 5px;
+}
+section>.middle>.left>.address>.addreInput>input{
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+    border:.5px solid lightgray;
+    outline: none;
+}
+section>.middle>.left>.address>input::placeholder{
+    color: #5b5b5b;
+   padding-left: 10px;
+}
+section>.middle>.left>.address>.addressButtons{
+    width: 30%;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+section>.middle>.left>.address>.addressButtons>button{
+    width: 120px;
+    border: .5px solid orange;
+    color: #fff;
+    letter-spacing: .5px;
+    border-radius: 5px;
+    background-color:orange;
+    outline: none;
+    padding: 5px;
+}
+section>.middle>.left>.leftSide{
     width: 100%;
     margin: 5px;
     padding: 15px;
@@ -68,7 +114,6 @@ section>.middle>.left>.leftSide>.cartDetails>.inc{
     background-color: rgb(237, 235, 235);
     border: .5px solid lightgray;
     font-weight: bold;
-
     /* color: red; */
 }
 section>.middle>.left>.leftSide>.cartDetails>.remove{
@@ -81,6 +126,11 @@ section>.middle>.left>.leftSide>.cartDetails>.remove{
     text-transform: uppercase;
     cursor: pointer;
 }
+.Address{
+    width: 100%;
+    background-color: red;
+}
+
 section>.middle>.right{
     width: 30%;
     margin: 5px;
@@ -104,7 +154,6 @@ section>.middle>.right>.amount>small{
     color: rgb(142, 142, 142);
     font-size: 17px;
     font-weight: bold;
-
 }
 section>.middle>.right>.amountDetails{
     width: 100%;
@@ -142,5 +191,138 @@ section>.middle>.right>.amountDetails>.checkout>button{
     background-color: rgb(255, 123, 0);
     color: #fff;
     transition: .5s ease all;
+}
+.MobileCart{
+    width: 100%;
+    display: none;
+}
+
+.paymentHead{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.paymentHead >.paymentMid{
+    width: 50%;
+    padding: 10px;
+    background-color: orange;
+}
+.paymentHead >.paymentMid>.paymentOption{
+    width: 30%;
+    background-color: yellow;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+.paymentHead >.paymentMid>.paymentOption>p>input{
+    vertical-align: middle;
+}
+.paymentHead >.paymentMid>.paymentOption>p>label{
+    margin-left: 5px;
+    vertical-align: middle;
+}
+@media (max-width:576px) {
     
+        .DesktopCart{
+            display: none;
+        }
+        .MobileCart{
+            display: flex;
+            width: 100% !important;
+            position: relative;
+            flex-direction: column;;
+        }
+        .MobileCart> .MobileMiddleCart{
+            width: 100% !important;
+           
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            
+        }
+        .MobileCart> .MobileMiddleCart>.loop{
+            width: 95%;
+           background-color: #fff;
+            display: flex;
+            padding: 5px;
+            justify-content: space-between;
+            margin: 5px;
+
+        }
+        .MobileCart> .MobileMiddleCart>.loop>.MobileCartImg{
+            width: 35% !important;
+            padding: 5px;
+            margin-right: 5px;
+            object-fit: contain;
+            
+
+        }
+        .MobileCart> .MobileMiddleCart>.loop>.MobileCartImg img{
+            width: 100% !important;
+        }
+        
+        .MobileCart> .MobileMiddleCart>.loop> .CartDetails{
+            width:65% !important;
+        }
+        .loop> .CartDetails>small ,p{
+            font-size: 15px;
+        }
+        .loop> .CartDetails>button{
+            margin-top: 10px;
+            width: 40px;
+            border-radius: 50px;
+            margin-right: 5px;
+            margin-left: 5px;
+            border: none;
+            outline: none;
+            font-weight: bold;
+        }
+        .loop> .CartDetails>.remove{
+            color: orange;
+            background-color: transparent;
+            width: 60px;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+        .MobileCart>footer{
+            background-color: #fff;
+            border: .5px solid lightgray;
+            padding: 7px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position:fixed;
+            z-index: 111;
+        }
+        .MobileCart>footer>div{
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin:5px;
+        }.MobileCart>footer>div>h4{
+            font-size: 18px;
+        }
+        .MobileCart>footer>div>button{
+            width: 130px;
+            border: none;
+            outline: none;
+            background-color: orange;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .popup{
+            background-color: #212121;
+            color: #fff;
+            position: absolute;
+            width: 80%;
+            top: 70%;
+            left: 10%;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
 }

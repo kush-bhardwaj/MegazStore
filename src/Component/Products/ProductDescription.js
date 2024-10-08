@@ -18,6 +18,7 @@ const ProductDescription = () => {
     async function ProductDescription() {
         try {
             const res = await GetSingleProduct(name)
+            console.log("resssss",res)
             if (res.status === "success") {
                 setLoad(false)
             }
@@ -43,24 +44,29 @@ const ProductDescription = () => {
     const ul = product.data?.productDescription.split("|");
     return (
         <> <Header />
-            {load ? <ScreenLoader /> : <div className="DescMain">
-                <div className="DescMiddle" >
-                    <div className="imageDiv">
-                        <div className='image'><img src={`${API_IMAGE_URL}${product.data?.productImg}`}></img></div>
-                        <div className='cartButtonDiv'> <button className='cartButton cartButton1' onClick={()=>AddCart(product.data?._id)}>Add to Cart</button>
+            {load ? <ScreenLoader /> : <div className="DescMain MobileDescMain">
+                <div className="DescMiddle mobileMiddle" >
+                    <div className="imageDiv mobileImg">
+                        <img src={`${API_IMAGE_URL}${product.data?.productImg}`}></img>
+                        <div className='cartButtonDiv mobilecartButtonDiv'> <button className='cartButton cartButton1' onClick={()=>AddCart(product.data?._id)}>Add to Cart</button>
                             <button className='cartButton cartButton1'>Buy Now</button>
                         </div>
                     </div>
                     <div className="detialsDiv">
                         <h1>{name}</h1>
-                        <h3><small>₹</small>{product.data?.productPrice}</h3>
+                        <h3><small>₹</small> {product.data?.productPrice}</h3>
                         <ul>
                             {ul?.slice(0, ul.length - 1)?.map((e, i) => <li key={i}>{e}</li>)}
                         </ul>
 
                     </div>
                 </div>
+                
             </div>}
+            <footer>
+                    <button onClick={()=>AddCart(product.data?._id)}>Add To Cart</button>
+                    <button>Buy Know</button>
+                </footer>
             <ToastContainer />
         </>
     )

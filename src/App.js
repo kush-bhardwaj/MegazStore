@@ -10,12 +10,16 @@ import Signup from './Component/Form/Signup';
 import ProductDescription from './Component/Products/ProductDescription';
 import ScreenLoader from './Utils/Loader';
 import Cart from './Component/cart/Cart';
+import Shrimmer from './Component/Shrimmer/Shrimmer';
+import Payment from './Component/cart/Payment';
 function App() {
   const router =createBrowserRouter([
     {path:"",element:<Main />},
     {path:'form',element:<Signup />},
     {path:'description/:name',element:<ProductDescription />},
     {path:"cart",element:<Cart />},
+    {path:'shrimmer',element:<Shrimmer/>},
+    {path:'payment',element:<Payment />}
     
   ])
   return (

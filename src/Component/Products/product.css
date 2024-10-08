@@ -1,24 +1,29 @@
-*{
+* {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-.mainProductDiv{
+
+.mainProductDiv {
     width: 100%;
     display: inline-block;
     /* background-color: whitesmoke; */
 }
-.mainProductDiv>.options{
+
+.mainProductDiv>.options {
     width: 100%;
+    /* background-color: red; */
     margin-top: 5px;
     padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.mainProductDiv>.options>.inner{
+
+.mainProductDiv>.options>.inner {
     width: 90%;
     padding: 5px;
 }
-.mainProductDiv>.options>.inner >select{
+
+.mainProductDiv>.options>.inner>select {
     width: 120px;
     padding: 5px;
     font-weight: thin;
@@ -28,6 +33,7 @@
     color: rgb(68, 65, 65);
     /* background-color: red; */
 }
+
 .ProductCard {
     width: 100%;
     /* background-color:rgb(247, 246, 246); */
@@ -92,14 +98,16 @@
     padding: 10px;
     margin: 5px;
     transition: .5s ease all;
-    aspect-ratio: 4/3;
+    /* background-color: red; */
+    aspect-ratio: 3/2;
     object-fit: contain;
 }
 
 .ProductCard>.ProducardCardMiddle>.ProductCardInside>.ProductsImg>img {
     width: 50%;
 }
-.cartButton{
+
+.cartButton {
     background-color: tomato;
     border-radius: 5px;
     color: #000;
@@ -115,21 +123,24 @@
     transition: .2s ease all;
     position: relative;
 }
-.cartButton>.cartIcon{
+
+.cartButton>.cartIcon {
     font-size: 15px;
     vertical-align: middle;
     margin-right: 5px;
 }
-.cartButton:hover{
+
+.cartButton:hover {
     border: .5px solid orange;
     background-color: #fff;
     color: #000;
 }
 
-.cartButton>span{
+.cartButton>span {
     vertical-align: middle;
 }
-.cartButton1{
+
+.cartButton1 {
     width: 200px;
     padding: 15px;
     font-size: 18px;
@@ -137,14 +148,16 @@
     color: #fff;
     margin-right: 10px;
 }
-.cartButtonDiv{
+
+.cartButtonDiv {
     display: flex;
     width: 100%;
     justify-content: center;
 }
+
 /* product description  start */
 
-.DescMain{
+.DescMain {
     width: 100%;
     padding: 5px;
     height: 100vh;
@@ -153,9 +166,10 @@
     /* align-items: self-start; */
     /* margin-top: 20px; */
 }
-.DescMain>.DescMiddle{
+
+.DescMain>.DescMiddle {
     width: 90%;
-    
+
     border-radius: 5px;
     background-color: #fff;
     display: flex;
@@ -164,40 +178,48 @@
     /* border: 1px solid lightgray;
     box-shadow:5px 5px 30px 0px rgb(187, 185, 185) ; */
 }
-.DescMain>.DescMiddle>.imageDiv{
+
+.DescMain>.DescMiddle>.imageDiv {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width:50%;
+    width: 50%;
     text-align: center;
 }
-.DescMain>.DescMiddle>.imageDiv>.image{
+
+.DescMain>.DescMiddle>.imageDiv>.image {
     width: 70%;
     /* background-color: red; */
     height: 600px;
     padding: 20px;
-   
+
+
 }
-.DescMain>.DescMiddle>.imageDiv>.image img{
+
+.DescMain>.DescMiddle>.imageDiv>.image img {
     width: 100%;
     margin: 10px;
     height: 100%;
-   object-fit: contain;
-   
-   
+    object-fit: contain;
+
+
 }
-.DescMain>.DescMiddle>.detialsDiv{
+
+.DescMain>.DescMiddle>.detialsDiv {
     /* background-color: rebeccapurple; */
     padding: 10px;
-    width:50%;
+    width: 50%;
 }
-.DescMain>.DescMiddle>.detialsDiv ul >li{
+
+.DescMain>.DescMiddle>.detialsDiv ul>li {
     line-height: 25px;
 }
-.DescMain>.DescMiddle>.detialsDiv h1{
+
+.DescMain>.DescMiddle>.detialsDiv h1 {
     font-size: 25px;
 }
-.DescMain>.DescMiddle>.detialsDiv h3{
+
+.DescMain>.DescMiddle>.detialsDiv h3 {
     color: #000;
     font-weight: bold;
     letter-spacing: 0.5px;
@@ -205,4 +227,154 @@
     font-size: 30px;
 }
 
+.MobileMenu {
+    display: none;
+    width: 100%;
+    /* display: flex;
+   justify-content: center;
+   align-items: center; */
+}
+footer{display: none;}
 /* product description end */
+
+
+@media (max-width:576px) {
+    .cartButtonDiv{
+        display: none;
+    }
+    footer{
+        display: flex;
+    }
+    .mobile_options {
+        padding: 2px !important;
+    }
+
+    .inner_text {
+        font-size: 12px;
+    }
+
+    .inner_text>select {
+        width: 80px !important;
+        padding: 2px;
+        outline: none;
+    }
+
+    .MobileProducardCardMiddle {
+        width: 100% !important;
+    }
+
+    .MobileProducardCardMiddle>.MobileProductCardInside {
+        width: 47% !important;
+        margin: 5px !important;
+        ;
+        border: none;
+        background-color: #fff;
+        border-radius: 5px !important;
+        transition: .5s ease all;
+        cursor: pointer;
+    }
+
+    .MobileProductsImg {
+        width: 100% !important;
+        padding: 10px !important;
+        margin: 5px !important;
+        transition: .5s ease all;
+        object-fit: contain;
+    }
+
+    .Mobileimg {
+        width: 90% !important;
+
+    }
+
+    p {
+        font-size: 15px !important;
+    }
+
+    .MobileMenu {
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        /* padding: 10px; */
+        flex-direction: column;
+    }
+
+    .MobileMenu>span {
+        width: 20%;
+        margin: 5px;
+    }
+
+
+    /* product description responsive*/
+    .MobileDescMain {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        padding: 0%;
+       
+      
+    }
+
+    .MobileDescMain>.mobileMiddle {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* background-color: red; */
+        padding: 5%;
+    }
+
+    .MobileDescMain>.mobileMiddle>.mobileImg {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .MobileDescMain>.mobileMiddle>.mobileImg>img {
+        width: 90%;
+        padding: 0%;
+    }
+
+    .MobileDescMain>.mobileMiddle>.detialsDiv {
+        width: 100%;
+       margin-bottom: 20px;
+    }
+    .MobileDescMain>.mobileMiddle>.detialsDiv >h1{
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .MobileDescMain>.mobileMiddle>.detialsDiv >h3>small{
+        font-size: 25px;
+    }
+    .MobileDescMain>.mobileMiddle>.detialsDiv >h3{
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 25px;
+        line-height: 25px;
+    }
+    footer{
+        width: 100%;
+        background-color: #fff;
+        margin-bottom: 20px;
+        display: flex;
+        position: fixed;
+        bottom: -20px;
+       
+    }
+   footer>button{
+        width: 50%;
+        padding: 15px;
+        border-top: .5px solid #e8e4e4;
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+        outline: none;
+        background-color: #fff;
+        font-weight: 600;
+
+    }
+    footer>button:nth-child(2){
+        background-color: orange;
+        border-top: .5px solid orange;
+    }
+}

@@ -65,9 +65,9 @@ export default function Signup() {
     }
     return (
         <>
-            {show ? <div className="formContainer">
-                <div className="middle">
-                    <div className="forms ">
+            {show ? <div className="formContainer mobileForm">
+                <div className="middle center">
+                    <div className=" middelEnd phone_width ">
                        <p> <img src={`${LOGO_URL}updae1.png`} ></img></p>
                         <h3>Sign In or create account</h3>
                         <form autoComplete='off' onSubmit={formSubmit}>
@@ -75,16 +75,16 @@ export default function Signup() {
                             <p><input onChange={handleChange} type='email' placeholder='Enter your email' name='email'></input></p>
                             <p><input onChange={handleChange} type='text' placeholder='Enter your mobile number' name='mobile'></input></p>
                             <p><input onChange={handleChange} type='password' placeholder='Enter your password' name='password'></input></p>
-                            <p><input onChange={handleChange} type='submit' value='Signup'></input></p>
+                            <p><input onChange={handleChange} type='submit' value='Signup' className='inputButton'></input></p>
                         </form>
                         <p>already account? <span onClick={() => { setShow(false); setLoginShow(true) }} >Login</span></p>
                     </div>
                 </div>
             </div> : null}
 
-            {LoginShow ? <div className="formContainer">
-                <div className="middle">
-                    <div className="forms ">
+            {LoginShow ? <div className="formContainer mobileForm">
+                <div className="middle center">
+                    <div className="phone_width ">
                     <p> <img src={`${LOGO_URL}updae1.png`} ></img></p>
                         <h3>Login Your Account</h3>
 
@@ -92,9 +92,9 @@ export default function Signup() {
 
                             <p><input onChange={LoginChange} type='email' placeholder='Enter your email' name='email'></input></p>
                             <p><input onChange={LoginChange} type='password' placeholder='Enter your password' name='password'></input></p>
-                            <p><input onChange={LoginChange} type='submit' value='Login'></input></p>
+                            <p><input onChange={LoginChange} type='submit' value='Login' className='inputButton'></input></p>
                         </form>
-                        <p>Create a Account?<span onClick={() => { setLoginShow(false); setShow(true) }} >SignUp</span></p>
+                        <p>Create a Account ?<span onClick={() => { setLoginShow(false); setShow(true) }} style={{cursor:'pointer'}} > SignUp</span></p>
                     </div>
                 </div>
             </div> : null}

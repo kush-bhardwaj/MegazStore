@@ -22,6 +22,9 @@ export const API_ROUTER = {
     category:{
         getCategory:"/category/getAllCategory",
         getSingleCategory:'/category/singlecategory'
+    },
+    order:{
+        placeOrder:'/order/addorder'
     }
     
 }
