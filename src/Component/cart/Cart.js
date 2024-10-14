@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useReducer, useState } from 'react';
 import Header from '../Header/Header';
 import './cart.css'
 import { DecrementQuantityCart, DelelteCart, GetCarts, IncreamentQuantityCart, OrderApi } from '../../API/API';
@@ -7,13 +7,29 @@ import ScreenLoader from '../../Utils/Loader';
 import BlankScreenLoad from '../../Utils/BlankLoad';
 import { toast, ToastContainer } from 'react-toastify';
 import { GetStorageInfo } from '../../Utils/Storage';
+import { useNavigate } from 'react-router-dom';
+
+const initialValue = {
+    address:false,
+    cartSec:true
+}
+function reducer(state ,action){
+    switch(action.check){
+        case 'checkout': return {address:true,cartSec:false}
+
+        default:
+            return state;
+    }
+}
 const Cart = () => {
+    const [state , dispatch] = useReducer(reducer,initialValue)
     const [load, setLoad] = useState(true)
     const [Carts, setCart] = useState()
     const [blank, setBlank] = useState(false)
     const [Notification, setNotification] = useState()
     const [TOTAL, setTotal] = useState()
     const [isTrue, setIsTrue] = useState()
+    const navigate = useNavigate()
     async function GetCartFun() {
         // console.log("hello")
         try {
@@ -82,9 +98,10 @@ const Cart = () => {
 
 
     const PlaceOrder =async ()=>{
-        const res = await OrderApi()
-        alert(res.status)
-        console.log("data",res)
+
+        // const res = await OrderApi()
+        // alert(res.status)
+        // console.log("data",res)
     }
 
 
@@ -104,20 +121,12 @@ const Cart = () => {
             </div>
             {/* DESKTOP CART START */}
             {blank ? <h1 style={{ textAlign: "center" }}>EMPTY CART</h1> : null}
-            {load ? <BlankScreenLoad /> : <section className ='DesktopCart'>
+            {load ? <BlankScreenLoad /> : <section className ='DesktopCart section'>
              
                 <div className='middle'>
                 
-                    <div className='left'>
-                        <div className='address'>
-                            <div className='addreInput'>
-                            <input type='text' placeholder='Your Address'></input>
-                            </div>
-                           <div className='addressButtons'> 
-                            <button>Save Address</button>
-                            <button>Already Saved</button>
-                           </div>
-                        </div>
+                   <div className='left'>
+                        
                         {Carts?.data?.map((e, i) => 
                         <div className='leftSide' key={i}>
                             <div className='cartImg'>
@@ -133,6 +142,7 @@ const Cart = () => {
                             </div>
                         </div>)}
                     </div>
+                
                     
                     <div className='right'>
 
@@ -165,11 +175,10 @@ const Cart = () => {
 
                                     }, 0)
                                 }
-
                                 </p>
                             </div>
                             <div className='checkout'>
-                                <button onClick={()=>PlaceOrder()}>Checkout</button>
+                                <button onClick={()=>navigate('../checkout')}>Place Order</button>
                             </div>
     
                         </div>

@@ -1,7 +1,8 @@
 export const API_ROUTER = {
     auth:{
         signup:"/auth/customer/signup",
-        login:"/auth/customer/login"
+        login:"/auth/customer/login",
+        update:'/auth/customer/update' 
     },
     products:{
         getAllProduct:"/product/allProduct",

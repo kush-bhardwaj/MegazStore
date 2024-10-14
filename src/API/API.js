@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 import { API_BASE_URL } from "../URL/URL";
 import { API_ROUTER } from "../Utils/ApiRouter";
 import { GetStorage } from "../Utils/Storage";
@@ -247,3 +248,43 @@ export const OrderApi = async () => {
     return await res.json()
 }
 //ORDER API END
+
+
+//
+
+export const SetAddress =async(data)=>{
+    const id =jwtDecode(GetStorage().token)
+    console.log("id",id)
+    const details = {
+        "name": `${data.name}`,
+        'mobile':`${data.mobile}`,
+        'pincode':`${data.pincode}`,
+        'locality':`${data.locality}`,
+        'city':`${data.city}`,
+        'state':`${data.state}`,
+        'landmark':`${data.mobile}`,
+        'alternate_phone':`${data.alternate_phone}`,
+        'address':`${data.address}`
+    }
+    // console.log("hello",details)
+    var formBody = []
+    for (let check in details) {
+        const urlKey = encodeURIComponent(check)
+        const urlValue = encodeURIComponent(details[check])
+        formBody.push(urlKey + "=" + urlValue)
+    }
+    formBody = formBody.join('&');
+    console.log("form",formBody)
+    const header = {
+        method:"PUT",
+        headers:{
+            'Content-type':"application/x-www-form-urlencoded"
+        },
+        body:formBody
+    }
+   const resData = await fetch(`${API_BASE_URL}${API_ROUTER.auth.update}?id=${id.customerId}`,header);
+   return await resData.json()
+}
+//
+
+//single customer

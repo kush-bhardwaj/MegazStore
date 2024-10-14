@@ -10,58 +10,72 @@
     background-color: orange;
     color: #fff;
 }
-section{
+.section{
     background-color: #f1f3f6;
     padding: 10px;
     display: flex;
     justify-content: center;
 }
-section>.middle{
+.section>.middle{
     width: 90%;
     display: flex;
     justify-content: space-between;
   
 
 }
-section>.middle>.left{
+.section>.middle>.left{
     width: 68%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-section>.middle>.left>.address{
-    width: 100%;
+.address{
+    width: 68%;
     margin: 5px;
     padding: 15px;
     background-color: #fff;
     display: flex;
-    justify-content:space-between;
+    justify-content:center;
     border-radius: 5px;
 
 }
-section>.middle>.left>.address>.addreInput{
-    width: 70%;
+.address>.addreInput{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
     padding: 5px;
 }
-section>.middle>.left>.address>.addreInput>input{
-    width: 100%;
+.address>.addreInput>input{
+    width: 48%;
+    margin: 3px;
     border-radius: 5px;
     padding: 5px;
+    height: 60px;
     border:.5px solid lightgray;
     outline: none;
 }
-section>.middle>.left>.address>input::placeholder{
-    color: #5b5b5b;
-   padding-left: 10px;
+.address>.addreInput>input::placeholder{
+    /* color: #5b5b5b; */
+  
+    padding-left: 10px;
 }
-section>.middle>.left>.address>.addressButtons{
+
+.address>.addreInput>.typebutton{
+    background-color: rgb(255, 123, 0);
+    border: 3px dotted #fff;
+    width: 24%;
+    color: #fff;
+}
+.address>.addressButtons{
     width: 30%;
     padding: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-section>.middle>.left>.address>.addressButtons>button{
+.address>.addressButtons>button{
     width: 120px;
     border: .5px solid orange;
     color: #fff;
@@ -71,7 +85,7 @@ section>.middle>.left>.address>.addressButtons>button{
     outline: none;
     padding: 5px;
 }
-section>.middle>.left>.leftSide{
+.section>.middle>.left>.leftSide{
     width: 100%;
     margin: 5px;
     padding: 15px;
@@ -80,21 +94,21 @@ section>.middle>.left>.leftSide{
     justify-content:safe;
     border-radius: 5px;
 }
-section>.middle>.left>.leftSide>.cartImg{
+.section>.middle>.left>.leftSide>.cartImg{
     width: 20%;
     height: 120px;
     text-align: center;
 }
-section>.middle>.left>.leftSide>.cartImg>img{
+.section>.middle>.left>.leftSide>.cartImg>img{
     width: 100%;
     object-fit: contain;
     height: 100%;
 }
-section>.middle>.left>.leftSide>.cartDetails{
+.section>.middle>.left>.leftSide>.cartDetails{
    width: 70%;
    /* font-size: 20px; */
 }
-section>.middle>.left>.leftSide>.cartDetails>button{
+.section>.middle>.left>.leftSide>.cartDetails>button{
     width: 30px;
     border: .5px solid lightgray;
     margin-top: 10px;
@@ -103,10 +117,10 @@ section>.middle>.left>.leftSide>.cartDetails>button{
     border-radius: 50px;
     cursor: pointer;
 }
-section>.middle>.left>.leftSide>.cartDetails>.plus{
+.section>.middle>.left>.leftSide>.cartDetails>.plus{
  margin-left: 5px;
 }
-section>.middle>.left>.leftSide>.cartDetails>.inc{
+.section>.middle>.left>.leftSide>.cartDetails>.inc{
     padding: 3px;
     display: inline-block;
     width: 30px;
@@ -116,7 +130,7 @@ section>.middle>.left>.leftSide>.cartDetails>.inc{
     font-weight: bold;
     /* color: red; */
 }
-section>.middle>.left>.leftSide>.cartDetails>.remove{
+.section>.middle>.left>.leftSide>.cartDetails>.remove{
     padding: 3px;
     width: 70px;
     text-align: center;
@@ -131,7 +145,7 @@ section>.middle>.left>.leftSide>.cartDetails>.remove{
     background-color: red;
 }
 
-section>.middle>.right{
+.section>.middle>.right{
     width: 30%;
     margin: 5px;
    
@@ -143,54 +157,55 @@ section>.middle>.right{
     max-height: 300px;
    
 }
-section>.middle>.right>.amount{
+.section>.middle>.right>.amount{
     width: 100%;
     margin-top: 5px;
     padding: 10px;
     background-color: #fff;
     border-bottom: 1px solid #e0dbdb;
 }
-section>.middle>.right>.amount>small{
+.section>.middle>.right>.amount>small{
     color: rgb(142, 142, 142);
     font-size: 17px;
     font-weight: bold;
 }
-section>.middle>.right>.amountDetails{
+.section>.middle>.right>.amountDetails{
     width: 100%;
     padding: 10px;
     background-color: #fff;
 }
 
 
-section>.middle>.right>.amountDetails>div{
+.section>.middle>.right>.amountDetails>div{
     width: 85%;
     /* background-color: red; */
     display: flex;
     justify-content: space-between;
 }
-section>.middle>.right>.amountDetails>div>p:nth-child(2){
+.section>.middle>.right>.amountDetails>div>p:nth-child(2){
     /* color: orange; */
     /* text-decoration: ; */
 }
 
-section>.middle>.right>.amountDetails>.checkout{
+.section>.middle>.right>.amountDetails>.checkout{
     width: 100%;
     /* background-color: red; */
     margin-top: 20px;
 }
-section>.middle>.right>.amountDetails>.checkout>button{
+.section>.middle>.right>.amountDetails>.checkout>button{
     width: 100%;
     font-weight: 500;
     letter-spacing: 1px;
-    padding: 8px;
+    padding: 10px;
     outline: none;
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 16px;
     border-width: 3px;
-    border:  dotted #fff;
+    border:  .5px solid #fff;
     background-color: rgb(255, 123, 0);
     color: #fff;
     transition: .5s ease all;
+    border-radius: 5px;
 }
 .MobileCart{
     width: 100%;

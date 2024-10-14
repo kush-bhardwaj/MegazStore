@@ -1,0 +1,181 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+.checkoutSection{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    /* align-items: center; */
+    padding: 5px;
+    background-color: #f5faff;
+    height: 100vh;
+}
+.checkoutSection>.checkoutMiddle{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption{
+    width: 80%;
+    background-color: #2874f0;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    margin: 15px;
+    margin-bottom: 0px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption>.cen{
+    width: 100%;
+    display: flex;
+    margin-top: 5px;
+    padding: 0px;
+    align-items: center;
+
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption>.cen2{
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: RED;
+    display: flex;
+    margin-top: 5px;
+    padding: 0px;
+    align-items: center;
+
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption>.cen2>.check{
+    display: flex;
+    background-color: orange;
+    width: 100%;
+    align-items: center;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption>.cen2>.check>span{
+    margin: 10px;
+    margin-left: 15px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption>.cen>.contents{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption>.cen>.contents>.h5{
+    background-color: #fff;
+    color: rgb(0, 72, 255);
+    width: 20px;
+    font-size: 12px;
+    height: 18px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption>.cen>.contents>h5{
+    font-size: 15px;
+    vertical-align: middle;
+    letter-spacing: .5px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption>.cen>.logoutButton{
+    width: 45%;
+   
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    vertical-align: middle;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption>.cen>.logoutButton>button{
+    width: 150px;
+    vertical-align: middle;
+    border: none;
+    outline:none;
+    background-color: rgb(255, 123, 0);
+    color: #fff;
+    font-weight: bold;
+    padding: 5px;
+    letter-spacing: 1px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption1{
+    width: 80%;
+    background-color: #fff;
+    border: 0.2px solid rgb(233, 231, 231);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    /* align-items: center; */
+    padding: 20px;
+    margin-left: 15px;
+    margin-top: 0px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption1>form>input{
+    width: 48%;
+    padding: 7px;
+    border: none;
+    margin:5px;
+    border-bottom: .5px solid lightgray;
+    outline: none;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption1>form>.inputButton{
+    background-color: rgb(255, 123, 0);
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption1>form>input::placeholder{
+    color: #a9abad;
+    text-transform: capitalize
+    
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption2{
+    width: 80%;
+    background-color: #f5faff;
+    border: .01px solid lightgray;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: start;
+    /* align-items: center; */
+    padding: 20px;
+    flex-wrap: wrap;
+    margin-left: 15px;
+    margin-top: 0px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption2>form>input{
+    width: 42%;
+    padding: 8px;
+    margin: 5px;
+    border: 0.5px solid lightgray;
+    outline: none;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption2>form>select{
+    width: 42%;
+    padding: 8px;
+    margin: 5px;
+    border: 0.5px solid lightgray;
+    outline: none;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption2>form>textarea{
+    resize: none;
+    width: 85%;
+    padding: 8px;
+    margin: 5px;
+    border: 0.5px solid lightgray;
+    outline: none;
+    height: 100px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption2>form>input::placeholder,textarea::placeholder{
+    color: rgb(141, 138, 138);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption2>form>button{
+    width: 250px;
+    padding: 12px;
+    margin: 5px;
+    background-color: rgb(255, 123, 0);
+    text-transform: uppercase;
+    color: #fff;
+    border: 0.5px solid lightgray;
+    outline: none;
+    margin-top: 10px;
+    font-weight: bold;
+    letter-spacing: .5px;
+}

@@ -9,6 +9,9 @@ export function GetStorage(){
         return false
     }
 }
+export function ClearStorggeKey(){
+    localStorage.removeItem(STORAGE_KEY)
+}
 
 export function GetStorageInfo(){
     if(localStorage.getItem(STORAGE_KEY)){
