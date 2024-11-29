@@ -25,7 +25,7 @@ export default function Signup() {
     }
     async function formSubmit(event) {
         event.preventDefault();
-        // console.log(formData)
+        // (formData)
         // signup api call start
         const res = await SignupApi(formData)
         if (res.status === "success") {
@@ -33,17 +33,18 @@ export default function Signup() {
             // setTimeout(()=>{
             //     navigate("../")
             // },2000)
-            console.log(res)
+            (res)
         }
         //signup api call end
     }
+    
     const LoginChange =async(event)=>{
         setLoginData({...LoginData,[event.target.name]:event.target.value})
-        // console.log(LoginData)
+        // (LoginData)
     }
     const LoginHandle =async(event)=>{
         event.preventDefault()
-        console.log(LoginData)
+        (LoginData)
         try{
             const data = new FormData()
             data.append('email',LoginData.email);
@@ -92,7 +93,7 @@ export default function Signup() {
 
                             <p><input onChange={LoginChange} type='email' placeholder='Enter your email' name='email'></input></p>
                             <p><input onChange={LoginChange} type='password' placeholder='Enter your password' name='password'></input></p>
-                            <p><input onChange={LoginChange} type='submit' value='Login' className='inputButton'></input></p>
+                            <p><input type='submit' value='Login' className='inputButton'></input></p>
                         </form>
                         <p>Create a Account ?<span onClick={() => { setLoginShow(false); setShow(true) }} style={{cursor:'pointer'}} > SignUp</span></p>
                     </div>

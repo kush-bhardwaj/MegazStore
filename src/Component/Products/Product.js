@@ -27,12 +27,12 @@ export default function Product() {
     } catch (err) { }
   }
   const SingleCategory = async (event) => {
-    // console.log("id",event.target.value)
+    
     // const res = await getSingleCategory(event.target.value)
     try {
       const res = await GetProductByCat(event.target.value);
       setProductData(res.data)
-      console.log("res", res)
+
     } catch (err) { }
   }
   const CategoryCall = async () => {
@@ -43,7 +43,7 @@ export default function Product() {
   }
 
   function Descriptioin(name) {
-    // console.log("name",name.replaceAll(" ","-"))
+    
     navigate(`/description/${name}`)
   }
 

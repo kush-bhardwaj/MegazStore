@@ -42,7 +42,13 @@
     justify-content: center;
     padding: 5px;
     margin-bottom: 10px;
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+
+   
 }
+
 
 .ProductCard>button {
     width: 40px;

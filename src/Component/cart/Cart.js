@@ -3,7 +3,6 @@ import Header from '../Header/Header';
 import './cart.css'
 import { DecrementQuantityCart, DelelteCart, GetCarts, IncreamentQuantityCart, OrderApi } from '../../API/API';
 import { API_IMAGE_URL } from '../../URL/URL';
-import ScreenLoader from '../../Utils/Loader';
 import BlankScreenLoad from '../../Utils/BlankLoad';
 import { toast, ToastContainer } from 'react-toastify';
 import { GetStorageInfo } from '../../Utils/Storage';
@@ -44,7 +43,6 @@ const Cart = () => {
                     , 0)
                 setTotal(discount)
                 if (res.data.length === 0) {
-
                     setBlank(true)
                 }
                 // console.log("data",res.data)
@@ -220,7 +218,7 @@ const Cart = () => {
 
                             }, 0)
                         }</h4>
-                        <button onClick={()=>PlaceOrder()}>Place Order</button>
+                        <button onClick={()=>navigate('../checkout')}>Place Order</button>
                     </div>
                 </footer>
             </section>

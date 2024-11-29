@@ -2,7 +2,8 @@ export const API_ROUTER = {
     auth:{
         signup:"/auth/customer/signup",
         login:"/auth/customer/login",
-        update:'/auth/customer/update' 
+        update:'/auth/customer/update',
+        single:'/auth/customer/single'
     },
     products:{
         getAllProduct:"/product/allProduct",
@@ -26,6 +27,9 @@ export const API_ROUTER = {
     },
     order:{
         placeOrder:'/order/addorder'
+    },
+    payment:{
+        createOrder:'/payment/createorder',
+        paymentVerify:'/payment/paymentverify'
     }
-    
 }

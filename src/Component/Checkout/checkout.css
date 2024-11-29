@@ -38,7 +38,7 @@
 .checkoutSection>.checkoutMiddle>.checkoutOption>.cen2{
     width: 100%;
     flex-wrap: wrap;
-    background-color: RED;
+    /* background-color: RED; */
     display: flex;
     margin-top: 5px;
     padding: 0px;
@@ -47,13 +47,22 @@
 }
 .checkoutSection>.checkoutMiddle>.checkoutOption>.cen2>.check{
     display: flex;
-    background-color: orange;
+    /* background-color: orange; */
     width: 100%;
     align-items: center;
 }
-.checkoutSection>.checkoutMiddle>.checkoutOption>.cen2>.check>span{
+.checkoutSection>.checkoutMiddle>.checkoutOption>.cen2>.check>ul{
+    display: flex;
     margin: 10px;
     margin-left: 15px;
+    padding: 0px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption>.cen2>.check>ul>li{
+   list-style-type: none;
+   padding: 0px;
+   margin-left: 15px;
+   font-weight: bold;
+   text-transform: capitalize;
 }
 .checkoutSection>.checkoutMiddle>.checkoutOption>.cen>.contents{
     display: flex;
@@ -178,4 +187,116 @@
     margin-top: 10px;
     font-weight: bold;
     letter-spacing: .5px;
+}
+
+.checkoutSection>.checkoutMiddle>.checkoutOptio{
+    width: 80%;
+    margin-left: 15px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOptio>.check{
+    background-color: #fff;
+    border: .5px solid rgb(228, 223, 223);
+    display: flex;
+    width: 100%;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOptio>.check>ul{
+    display: flex;
+    list-style: none;
+    padding: 0px;
+    padding: 5px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOptio>.check>ul>li{
+    margin: 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+
+.checkoutSection>.checkoutMiddle>.checkoutOption1>.dekh{
+    width: 100%;
+    display: flex;
+}
+
+.checkoutSection>.checkoutMiddle>.checkoutOption1>.dekh>.left{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption1>.dekh>.left>.leftSide{
+    width: 90%;
+    display:flex;
+    margin: 8px;
+    justify-content:space-between;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption1>.dekh>.left>.leftSide>.cartImg{
+    width: 20%;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption1>.dekh>.left>.leftSide>.cartDetails{
+    width: 95%;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption1>.dekh>.left>.leftSide>.cartDetails>button{
+    width: 30px;
+    border: .5px solid lightgray;
+    margin-top: 10px;
+    margin-right: 5px;
+    outline: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption1>.dekh>.left>.leftSide>.cartDetails>.plus{
+    margin-left: 5px;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption1>.dekh>.left>.leftSide>.cartDetails>.remove{
+    padding: 3px;
+    width: 70px;
+    text-align: center;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.checkoutSection>.checkoutMiddle>.checkoutOption1>.dekh>.left>button{
+    width: 220px;
+    /* font-size: 25px; */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    padding: 8px;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    background-color: rgb(255, 123, 0);
+    border: none;
+    color: #fff;
+
+}
+
+
+
+.checkoutSection>.checkoutMiddle>.payment{
+    width: 80%;
+    background-color: #fff;
+    border: 0.2px solid rgb(233, 231, 231);
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content:space-between; */
+    /* align-items: center; */
+    padding: 20px;
+    margin-left: 15px;
+    margin-top: 0px;
+    vertical-align: middle;
+    align-items: center;
+    
+}
+.checkoutSection>.checkoutMiddle>.payment>span{
+    margin: 10px;
+    text-decoration: underline;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+.checkoutSection>.checkoutMiddle>.payment>span:hover{
+    color: red;
 }

@@ -36,7 +36,7 @@ const ProductDescription = () => {
                 },500)
             }
            else{toast.error(res.message)}
-            console.log(res)
+            
         }
     useState(() => {
         ProductDescription()

@@ -1,7 +1,8 @@
 import { jwtDecode } from "jwt-decode";
 import { API_BASE_URL } from "../URL/URL";
 import { API_ROUTER } from "../Utils/ApiRouter";
-import { GetStorage } from "../Utils/Storage";
+import { GetStorage, GetStorageInfo } from "../Utils/Storage";
+import { json } from "react-router-dom";
 
 //customer form api start here
 
@@ -20,7 +21,6 @@ export const SignupApi = async (data) => {
 
 export const LoginApi = async (data) => {
     try {
-        console.log("data", data)
         const header = {
             method: "POST",
             headers: {
@@ -82,7 +82,6 @@ export const getCategory = async () => {
 //get single category
 export const getSingleCategory = async (id) => {
     try {
-        console.log("id", id)
         const header = {
             method: "GET",
             header: {
@@ -150,7 +149,6 @@ export const AddToCart = async (productId) => {
             },
             body: formBody
         }
-        console.log(header.headers)
         const res = await fetch(`${API_BASE_URL}${API_ROUTER.cart.addcart}`, header)
         return await res.json();
     } catch (err) {
@@ -169,7 +167,7 @@ export const GetCarts = async () => {
                 "Authorization": `bearer ${GetStorage().token}`
             }
         }
-        // console.log("header",header)
+
         const res = await fetch(`${API_BASE_URL}${API_ROUTER.cart.getcart}`, header);
         return await res.json()
     } catch (err) {
@@ -216,7 +214,7 @@ export const IncreamentQuantityCart = async (id) => {
 
 export const DecrementQuantityCart = async (id) => {
     try {
-        // console.log()
+
         const header = {
             method: "PUT",
             headers: {
@@ -236,15 +234,19 @@ export const DecrementQuantityCart = async (id) => {
 
 //ORDER API
 
-export const OrderApi = async () => {
-   
-    const header ={
-        method:"POST",
-        headers:{
-            'Authorization':`Bearer ${GetStorage().token}`
-        }
+export const OrderApi = async (medium) => {
+    delete medium.address._id
+    const address = medium.address
+    const header = {
+        method: "POST",
+        headers: {
+            'Authorization': `bearer ${GetStorage().token}`,
+            'Content-type':"application/json"
+        },
+        body:JSON.stringify(address)
     }
-    const res = await fetch(`${API_BASE_URL}${API_ROUTER.order.placeOrder}`,header)
+
+    const res = await fetch(`${API_BASE_URL}${API_ROUTER.order.placeOrder}?medium=${medium.paymentMedium}`, header)
     return await res.json()
 }
 //ORDER API END
@@ -252,21 +254,20 @@ export const OrderApi = async () => {
 
 //
 
-export const SetAddress =async(data)=>{
-    const id =jwtDecode(GetStorage().token)
-    console.log("id",id)
+export const SetAddress = async (data) => {
+    const id = jwtDecode(GetStorage().token)
     const details = {
         "name": `${data.name}`,
-        'mobile':`${data.mobile}`,
-        'pincode':`${data.pincode}`,
-        'locality':`${data.locality}`,
-        'city':`${data.city}`,
-        'state':`${data.state}`,
-        'landmark':`${data.mobile}`,
-        'alternate_phone':`${data.alternate_phone}`,
-        'address':`${data.address}`
+        'mobile': `${data.mobile}`,
+        'pincode': `${data.pincode}`,
+        'locality': `${data.locality}`,
+        'city': `${data.city}`,
+        'state': `${data.state}`,
+        'landmark': `${data.mobile}`,
+        'alternate_phone': `${data.alternate_phone}`,
+        'address': `${data.address}`
     }
-    // console.log("hello",details)
+
     var formBody = []
     for (let check in details) {
         const urlKey = encodeURIComponent(check)
@@ -274,17 +275,40 @@ export const SetAddress =async(data)=>{
         formBody.push(urlKey + "=" + urlValue)
     }
     formBody = formBody.join('&');
-    console.log("form",formBody)
     const header = {
-        method:"PUT",
-        headers:{
-            'Content-type':"application/x-www-form-urlencoded"
+        method: "PUT",
+        headers: {
+            'Content-type': "application/x-www-form-urlencoded"
         },
-        body:formBody
+        body: formBody
     }
-   const resData = await fetch(`${API_BASE_URL}${API_ROUTER.auth.update}?id=${id.customerId}`,header);
-   return await resData.json()
+    const resData = await fetch(`${API_BASE_URL}${API_ROUTER.auth.update}?id=${id.customerId}`, header);
+    return await resData.json()
 }
 //
 
 //single customer
+
+export const SingleCustomer = async () => {
+    const id = jwtDecode(GetStorage().token)
+    const header = {
+        method: "GET",
+    }
+    const res = await fetch(`${API_BASE_URL}${API_ROUTER.auth.single}?id=${id.customerId}`, header);
+    return await res.json()
+}
+
+
+
+//payemtcreateorder
+export const OrderCreateRazor=async()=>{
+    const header ={
+        method:"POST",
+        headers:{
+            'Authorization': `bearer ${GetStorage().token}`,
+        }
+    }
+    const res =await fetch(`${API_BASE_URL}${API_ROUTER.payment.createOrder}`,header)
+
+    return  await res.json()
+}

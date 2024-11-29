@@ -2,24 +2,59 @@ import './checkout.css'
 import { useEffect, useReducer, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import { ClearStorggeKey, GetStorage } from '../../Utils/Storage'
-import { LoginApi, SetAddress } from '../../API/API'
+import { API_BASE_URL2, API_BASE_URL3, API_IMAGE_URL, LOGO_URL, RAZORPAY_SCRIPT_URL } from '../../URL/URL';
+import { DecrementQuantityCart, DelelteCart, GetCarts, IncreamentQuantityCart, LoginApi, OrderApi, OrderCreateRazor, SetAddress, SignupApi, SingleCustomer } from '../../API/API'
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 const initialValue = {
     login: true,
     address: false,
     order: false,
     payment: false,
     change: false,
+    addresData: false,
+    show: false
 }
 const reducer = (state, action) => {
     switch (action.data) {
-        case 'login': return { login: true }
-        case 'logout': return { login: false, address: true, change: true }
+        case 'login': return { login: true };
+        case 'logout': return { change: true, login: false, address: true };
+        case 'address': return { addres: true,order:false,show:false };
+        case 'hide': return { order: true, ...state, address: false, show: true };
+        case 'show': return { show: true };
+        case 'payment': return {order:false,payment:true};
+        case 'isExist':return {addres:true,show:false};
+        default :return state
     }
 }
+
 const Checkout = () => {
+
+    const loadScript =(src)=>{
+        return new Promise((resolve)=>{
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = function(){
+                resolve(true)
+            }
+            script.onerror = function(){
+                resolve(false)
+            }
+           
+            document.body.appendChild(script)
+        })
+    }
+    useEffect(() => {
+        loadScript("https://checkout.razorpay.com/v1/checkout.js");
+        IsLogedIn();
+    }, [])
+    const navigate = useNavigate()
     const [state, dispatch] = useReducer(reducer, initialValue)
-    const [dataOfAddress , setDataOfAddress] = useState()   
-    const selectStates = ["Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"]
+    const [dataOfAddress, setDataOfAddress] = useState(0)
+    const [Carts, setCart] = useState()
+    const [TOTAL, setTotal] = useState()
+    const selectStates = ["Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", 'Delhi', "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"]
     const [addressData, setAddress] = useState({
         name: "",
         address: "",
@@ -35,6 +70,17 @@ const Checkout = () => {
         email: "",
         password: ""
     })
+
+    async function SingleCustumer() {
+        const res = await SingleCustomer()
+       
+        if(res?.data?.customerAddress.length === 0 || res?.data?.customerAddress === 'undefined' || res?.data?.customerAddress == ''){
+            dispatch({ data:'address'})  
+        }
+        setDataOfAddress(res?.data?.customerAddress)
+        dispatch({ data: 'hide' })
+        GetCartFun()
+    }
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value })
     }
@@ -42,41 +88,157 @@ const Checkout = () => {
         event.preventDefault()
         const res = await LoginApi(formData)
         if (res.status === 'success') {
+           
             dispatch({ data: "logout" })
         }
-        // dispatch({data:'logout'})
     }
     const IsLogedIn = () => {
         const status = GetStorage()
         if (status.status === 'success') {
-            // const x = jwtDecode(status.token)
-            // console.log("check",x)
             dispatch({ data: 'logout' })
+            SingleCustumer()
         }
     }
+
     const Logout = () => {
-        console.log("hello")
+       
         ClearStorggeKey()
         dispatch({ data: 'login' })
     }
 
     const formHanlde1 = async (event) => {
-        event.preventDefault()
-        const res = await SetAddress(addressData)
-        console.log(res)
-        console.log("res", res?.data?.customerAddress)
-        setDataOfAddress(res?.data?.customerAddress)
-        // console.log(addressData)
-
+        try {
+            event.preventDefault()
+            const res = await SetAddress(addressData)
+        } catch (err) { }
     }
     const handleChange1 = (event) => {
         setAddress({ ...addressData, [event.target.name]: event.target.value })
-        //    console.log(addressData)
     }
-    useEffect(() => {
-        IsLogedIn()
 
-    }, [])
+
+
+    //ORDER SUMMARY
+    async function GetCartFun() {
+        //
+        try {
+            const res = await GetCarts()
+           
+            if (res.status === "success") {
+                setCart(res)
+                const discount = Carts?.data?.reduce((acc, e) =>
+
+                    acc + e.discount
+
+                    , 0)
+                setTotal(discount)
+
+            }
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    //increment 
+    async function IncQuantity(id) {
+        try {
+            const res = await IncreamentQuantityCart(id)
+           
+            if (res.status === 'success') {
+                GetCartFun()
+            }
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    //decrement
+    async function DecQuantity(id) {
+
+        try {
+            const res = await DecrementQuantityCart(id)
+            //
+            if (res.status === 'success') {
+                GetCartFun()
+            }
+        } catch (err) { console.error(err) }
+    }
+
+    //delete cart
+    async function DeleteCartAPICall(id) {
+        try {
+            const res = await DelelteCart(id)
+            //
+            if (res.status === 'success') {
+                GetCartFun()
+            }
+        } catch (err) { console.error(err) }
+    }
+
+
+    // Order Book
+    async function OrderBook(medium){
+        const res = await OrderApi(medium)
+       
+        if(res.status ==='success'){
+            navigate('../orderdetails')
+            // alert(res.message)
+        }else{alert(res.message)}
+    }
+
+
+    //Razorpay script
+   
+    const onPayment = async () => {
+        
+        //create order 
+        try {
+            const header ={
+                method:"POST",
+                headers:{
+                    method:"POST",
+                    'Authorization': `bearer ${GetStorage().token}`,
+                }
+            }
+            const res = await fetch (`${API_BASE_URL2}`, header)
+            const data =await res.json();
+            //
+            //
+
+
+
+            //intrect with razorpay server
+            const PaymentObject = new (window).Razorpay({
+                
+                key: "rzp_test_tq3U5I5t5iI7Cd",
+                order_id: data.id,
+                ...data,
+                handler: (res) => {
+                    const verify = {
+                        order_id: res.razorpay_order_id,
+                        payment_id: res.razorpay_payment_id,
+                        signature: res.razorpay_signature,
+                    }
+                   
+                    const header={
+                        headers:{
+                            'authorization': `Bearer ${GetStorage().token}`
+                        }
+                    }
+                    axios.post(`${API_BASE_URL3}`,verify,{header}).then((res)=>{
+                       
+                        if(res.data.success){
+                            // alert(res.data.message)
+                            alert( 'payment success')
+                            OrderBook({paymentMedium:"ONLINE",address:dataOfAddress[0]})
+
+                        }else{ alert('payment faild')}
+                       
+                    })
+                }
+            })
+            PaymentObject.open()
+        } catch (err) { }
+    }
+
     return (
         <>
             {/* Header */}
@@ -112,15 +274,10 @@ const Checkout = () => {
                                 <h5 className='h5'>2</h5>
                                 <h5>DELIVERY ADDRESS</h5>
                             </div>
-                            <div className='check'>
-            
-                                    {dataOfAddress?.map((e,i)=>
-                                        <span>{e}</span>
-                                    )}
-                            </div>
+
                         </div>
                     </div>
-                    {state.address ? <div className='checkoutOption2'>
+                    {state.addres? <div className='checkoutOption2'>
                         <form onSubmit={formHanlde1}>
                             <input type='text' onChange={handleChange1} placeholder='Name' name='name'></input>
                             <input type='text' onChange={handleChange1} placeholder='10-digit mobile number' name='mobile'></input>
@@ -139,9 +296,21 @@ const Checkout = () => {
 
                             <button type='submit'> save and deliver here</button>
                         </form>
-                    </div> : false}
+                    </div> 
+ :false}
+                    
+                    {state.show ? <div className='checkoutOptio'>
+                        <div className='check'>
 
-                    <div className='checkoutOption2'></div>
+                            <ul>
+                                <li>{dataOfAddress[0]?.name}</li>
+                                <li>{dataOfAddress[0]?.address}</li>
+                                <li>{dataOfAddress[0]?.city}</li>
+                                <li>{dataOfAddress[0]?.state}</li>
+                                <li>{dataOfAddress[0]?.pincode}</li>
+                            </ul>
+                        </div>
+                    </div> : false}
 
                     {/* ORDER SUMMARY */}
                     <div className='checkoutOption'>
@@ -153,7 +322,25 @@ const Checkout = () => {
                         </div>
                     </div>
                     {state.order ? <div className='checkoutOption1'>
-                        <input></input>
+                            <div className='dekh'>
+                                <div className='left'>
+                                    {Carts?.data?.map((e, i) =>
+                                        <div className='leftSide' key={i}>
+                                            <div className='cartImg'>
+                                                <img alt="check" src={`${API_IMAGE_URL}${e.cartsData?.productImg}`} width={100}></img>
+                                            </div>
+                                            <div className='cartDetails'>
+                                                <p>{e.cartsData?.productTitle}</p>
+                                                <small>&#8377; {e.cartsData?.productPrice * e?.quantity}</small><br></br>
+                                                <button onClick={() => DecQuantity(e.productId)} >-</button>
+                                                <small className='inc'>{e.quantity}</small>
+                                                <button className='plus' onClick={() => IncQuantity(e.productId)}>+</button>
+                                                <small className='remove' onClick={() => DeleteCartAPICall(e?.productId)}>Remove</small>
+                                            </div>
+                                        </div>)}
+                                <button onClick={()=>dispatch({data:"payment"})}>CONTINUE</button>
+                                </div>
+                            </div>
                     </div> : false}
 
                     {/* PAYMENT OPTIONS */}
@@ -165,8 +352,14 @@ const Checkout = () => {
                             </div>
                         </div>
                     </div>
-                    {state.payment ? <div className='checkoutOption1'>
-                        <input></input>
+                    {state.payment ? <div className='checkoutOption1 payment'>
+                       
+                     {/* <p><label>cash on delivery</label> <input type='radio' name='payment'></input></p>
+                      <p><label>Online</label> <input type='radio' name='payment'></input></p><br></br>
+                      <img src={`${LOGO_URL}razorpay.png`}></img> */}
+                       {/* <img src={`${LOGO_URL}razorpay.png`} width={100}></img> */}
+                     <span onClick={()=>OrderBook({paymentMedium:"COD",address:dataOfAddress[0]})}>COD</span>
+                     <span onClick={()=>onPayment()}>Online</span>
                     </div> : false}
 
                 </div>

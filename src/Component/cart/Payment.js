@@ -1,43 +1,29 @@
-import { useReducer, useState } from "react";
-// Define the initial state
-const initialState = { 
-    cod: false ,
-    upi:false,
-};
-// Define a reducer function
-function reducer(state, action) {
-  switch (action.type) {
-    case 'cod':
-      return { 
-        cod:true ,upi:false
-    };
-    case 'upi': 
-    return{
-        cod :false, upi:true
-    }
-  }
-}
-const Payment = ()=>{
-    const [state, dispatch] = useReducer(reducer, initialState);
+
+export default function(){
     return (
         <>
-        <div className="paymentHead">
-            <div className="paymentMid">
-                <h4>Payment Options</h4>
-                <p>Choose an express checkout or complete the form below</p>
-               <div className="paymentOption">
-               <p><input type="radio" name="cod" onClick={() => dispatch({ type: 'cod' })}></input><label>Cash On Delivery</label></p>
-               <p><input type="radio" name='cod' onClick={()=> dispatch({type:'upi'})}></input><label>UPI</label></p>
-               </div>
-               {
-                    state.cod?<button>Pay Now</button>:false
-                }
-                {
-                    state.upi?<button>Yes</button>:false
-                }
-            </div>
-        </div>
+            <div class='content'>
+<div class="alert alert-success alert-white rounded">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <div class="icon"><i class="fa fa-check"></i></div>
+    <strong>Success!</strong> Changes has been saved successfully!
+</div>
+<div class="alert alert-info alert-white rounded">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <div class="icon"><i class="fa fa-info-circle"></i></div>
+    <strong>Info!</strong> You have 3 new messages in your inbox.
+</div>
+<div class="alert alert-warning alert-white rounded">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <div class="icon"><i class="fa fa-warning"></i></div>
+    <strong>Alert!</strong> Don't forget to save your data.
+</div>
+<div class="alert alert-danger alert-white rounded">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <div class="icon"><i class="fa fa-times-circle"></i></div>
+    <strong>Error!</strong> The server is not responding, try again later.
+</div>
+</div>
         </>
     )
 }
-export default Payment;
