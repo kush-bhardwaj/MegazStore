@@ -118,7 +118,7 @@ const Checkout = () => {
 
 
 
-    //ORDER SUMMARY
+    //ORDER SUMMARY s
     async function GetCartFun() {
         //
         try {
